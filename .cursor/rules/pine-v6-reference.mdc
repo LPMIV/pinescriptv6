@@ -1,0 +1,26 @@
+---
+description: Pine Script v6 (use local pinescriptv6 docs via LLM_MANIFEST routing)
+globs: ["**/*.pine"]
+alwaysApply: false
+---
+
+## Pine Script v6 reference routing (local, authoritative)
+
+### Source of truth
+- Use the local `pinescriptv6` documentation repo in this workspace as the authoritative Pine Script v6 reference.
+- **Entry point**: consult `pinescriptv6/LLM_MANIFEST.md` first to decide which single reference file(s) to pull next.
+- **Modular retrieval**: only open the specific files needed for the question (avoid loading large monolithic manuals).
+
+### Practical retrieval rules
+- **Functions**: prefer the namespaced reference under `pinescriptv6/reference/functions/*.md` (e.g., `ta.md`, `strategy.md`, `drawing.md`, `request.md`).
+- **Types/keywords/constants/variables**: use `pinescriptv6/reference/{types,keywords,constants,variables}.md`.
+- **Execution model / repainting / common errors**: use `pinescriptv6/concepts/*.md`.
+
+### Code generation constraints
+- Always generate Pine scripts with `//@version=6`.
+- Prefer built-in namespaces (e.g., `ta.*`) over manual re-implementations where possible.
+- If a function/type/syntax cannot be found in the `pinescriptv6` reference chunks, do **not** invent it; instead, say it’s not present in the v6 reference and propose the closest verified alternative.
+
+### Editing constraints (minimal churn)
+- When modifying existing `.pine` scripts, keep changes tightly scoped: avoid unrelated renames, reformatting, and “cleanup” refactors unless explicitly requested.
+
